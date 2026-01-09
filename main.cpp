@@ -7,6 +7,8 @@ void showMenu() {
     cout << "0 - Exit\n";
     cout << "3 - Force\n";
     cout << "4 - Pressure\n";
+    cout << "5 - Density\n";
+    cout << "6 - Momentum\n";
     cout << "7 - Energy/Work\n";
     cout << "8 - Power\n";
     cout << "Enter your choice: ";
@@ -27,12 +29,18 @@ public:
     double calculatePressure(double force, double area) {
         return force / area;
     }
+    double calculateDensity(double mass, double volume) {
+        return mass / volume;
+    }
+    double calculateMomentum(double mass, double velocity) {
+        return mass * velocity;
+    }
 };
 
 int main() {
     PhysicsSystem physicsCalculator;
     int choice;
-    double force, velocity, distance, mass, acceleration, area;
+    double force, velocity, distance, mass, acceleration, area, density, momentum, volume;
 
     while (true) {
         showMenu();
@@ -80,6 +88,42 @@ int main() {
                 break;
                      }    
 
+            case 5:
+                cout << "Calculate Density\n";
+                cout <<"Enter mass (m): ";
+                cin >> mass;
+                cout << "Enter volume (V): ";
+                cin >> volume;
+
+                if (mass <= 0 && volume <= 0) { 
+                     cout << "Error: Invalid input! Mass and volume must be postive or greater than zero.\n";
+                    break;
+                    }
+                else {
+                        cout << "Density = "
+                        << physicsCalculator.calculateDensity(mass, volume)
+                        << "kg per m³\n";
+                        break;
+                    }
+            
+            case 6:
+                cout << "Calculate Momentum\n";
+                cout << "Enter mass (m): ";
+                cin >> mass;
+                cout << "Enter velocity (m/s): ";
+                cin >> velocity;
+
+                if (mass <= 0) {
+                    cout << "Error: Invalid input! Mass must be greater than zero.\n";
+                    break;
+                }
+                else {
+                    cout << "Momentum = "
+                    << physicsCalculator.calculateMomentum(mass, velocity)
+                    << "kg·m/s\n";
+                    break;  
+                }
+                
             case 7:
                 cout << "Calculate Energy/Work\n";
                 cout << "Enter the force (N): ";
