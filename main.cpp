@@ -21,12 +21,18 @@ public:
     double calculateWork(double force, double distance) {
         return force * distance;
     }
+    double calculateForce(double mass, double acceleration) {
+        return mass * acceleration;
+    }
+    double calculatePressure(double force, double area) {
+        return force / area;
+    }
 };
 
 int main() {
     PhysicsSystem physicsCalculator;
     int choice;
-    double force, velocity, distance;
+    double force, velocity, distance, mass, acceleration, area;
 
     while (true) {
         showMenu();
@@ -47,17 +53,32 @@ int main() {
             case 3:
                 cout << "Calculate Force\n";
                 cout << "Enter mass (kg): ";
-                double mass;
                 cin >> mass;
                 cout << "Enter acceleration (m/s^2): ";
-                double acceleration;
                 cin >> acceleration;
 
-                cout << "Force = " << mass * acceleration << " N\n";
+                cout << "Force =" 
+                    << physicsCalculator.calculateForce(mass, acceleration)
+                    << " Newtons\n";
                 break;
 
             case 4:
                 cout << "Calculate Pressure\n";
+                cout << "Enter force (N): ";
+                cin >> force;
+                cout << "Enter area (m^2): ";
+                cin >> area;
+
+                if (force < 0 || area <= 0) {
+                    cout << "Error: Force must be non-negative and area must be greater than zero.\n";
+                    break;
+                } 
+                else {
+                    cout << "Pressure = "
+                     << physicsCalculator.calculatePressure(force, area)
+                     << " Pascals\n";
+                break;
+                     }    
 
             case 7:
                 cout << "Calculate Energy/Work\n";
