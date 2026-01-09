@@ -5,6 +5,8 @@ using namespace std;
 void showMenu() {
     cout << "Physics System\n";
     cout << "0 - Exit\n";
+    cout << "3 - Force\n";
+    cout << "4 - Pressure\n";
     cout << "7 - Energy/Work\n";
     cout << "8 - Power\n";
     cout << "Enter your choice: ";
@@ -41,6 +43,21 @@ int main() {
             case 0:
                 cout << "Exiting program.\n";
                 return 0;
+
+            case 3:
+                cout << "Calculate Force\n";
+                cout << "Enter mass (kg): ";
+                double mass;
+                cin >> mass;
+                cout << "Enter acceleration (m/s^2): ";
+                double acceleration;
+                cin >> acceleration;
+
+                cout << "Force = " << mass * acceleration << " N\n";
+                break;
+
+            case 4:
+                cout << "Calculate Pressure\n";
 
             case 7:
                 cout << "Calculate Energy/Work\n";
