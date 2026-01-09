@@ -5,6 +5,7 @@ using namespace std;
 void showMenu() {
     cout << "Physics System\n";
     cout << "0 - Exit\n";
+    cout << "1 - Velocity\n";
     cout << "7 - Energy/Work\n";
     cout << "8 - Power\n";
     cout << "Enter your choice: ";
