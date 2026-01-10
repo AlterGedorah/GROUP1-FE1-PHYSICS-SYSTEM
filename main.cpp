@@ -13,6 +13,8 @@ void showMenu() {
     cout << "6 - Momentum\n";
     cout << "7 - Energy/Work\n";
     cout << "8 - Power\n";
+    cout << "9 - Kinetic Energy\n";
+    cout << "10 - Resistance\n";
     cout << "Enter your choice: ";
 }
 
@@ -45,6 +47,15 @@ public:
     double calculateMomentum(double mass, double velocity) {
         return mass * velocity;
     }
+    
+    double calculateKineticEnergy(double mass, double velocity) {
+        double squaredVelocity = velocity * velocity;
+        return 0.5 * mass * squaredVelocity;
+    }
+    double calculateResistance(double voltage,double electricCurrent){
+        return voltage / electricCurrent;
+    }
+
 };
 
 
@@ -52,7 +63,7 @@ int main() {
     PhysicsSystem physicsCalculator;
     int choice;
 
-    double force, velocity, distance, mass, acceleration, area,initialVelocity,time,density, momentum, volume;
+    double force, velocity, distance, mass, acceleration, area,initialVelocity,time,density, momentum, volume,voltage,electricCurrent;
 
     while (true) {
         showMenu();
@@ -190,7 +201,37 @@ int main() {
                      << physicsCalculator.calculatePower(force, velocity)
                      << " Watts\n";
                 break;
-
+            
+            case 9:
+                cout << "Calculate Kinetic Energy\n";
+                cout << "Enter mass (m): ";
+                cin >> mass;
+                cout << "Enter the velocity (m/s): ";
+                cin >> velocity;
+                if (mass < 0) {
+                    cout << "Error: Invalid input! Mass must be postive or greater than zero.\n";
+                    break;
+                } else {
+                    cout << "Kinetic Energy = "
+                         << physicsCalculator.calculateKineticEnergy(mass, velocity)
+                         << " Joules\n";
+                }
+                break;
+            
+            case 10:
+                cout << "Calculate Resistance\n";
+                cout << "Enter voltage (V): ";
+                cin >> voltage;
+                cout << "Enter the electric current (I): ";
+                cin >> electricCurrent;
+                if (electricCurrent <= 0 || voltage <=0) {
+                     cout << "Error: Invalid input! Current and voltage must be greater than zero!";
+                } else {
+                    cout << "Resistance = "
+                         << physicsCalculator.calculateResistance(voltage,electricCurrent)
+                         << " Ohms\n";
+                }
+                break;
             default:
                 cout << "Invalid choice. Try again.\n";
         }
