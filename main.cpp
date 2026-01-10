@@ -5,6 +5,8 @@ using namespace std;
 void showMenu() {
     cout << "Physics System\n";
     cout << "0 - Exit\n";
+    cout << "1 - Velocity\n";
+    cout << "2 - Acceleration\n";
     cout << "3 - Force\n";
     cout << "4 - Pressure\n";
     cout << "5 - Density\n";
@@ -23,6 +25,14 @@ public:
     double calculateWork(double force, double distance) {
         return force * distance;
     }
+
+    double calculateVelocity(double distance, double time) {
+        return distance / time;
+    }
+
+    double calculateAcceleration(double velocity, double time, double initialVelocity) {
+        return (velocity - initialVelocity) /  time;
+    }
     double calculateForce(double mass, double acceleration) {
         return mass * acceleration;
     }
@@ -37,10 +47,12 @@ public:
     }
 };
 
+
 int main() {
     PhysicsSystem physicsCalculator;
     int choice;
-    double force, velocity, distance, mass, acceleration, area, density, momentum, volume;
+
+    double force, velocity, distance, mass, acceleration, area,initialVelocity,time,density, momentum, volume;
 
     while (true) {
         showMenu();
@@ -57,6 +69,37 @@ int main() {
             case 0:
                 cout << "Exiting program.\n";
                 return 0;
+
+
+            case 1: 
+                cout << "Calculate Velocity\n";
+                cout << "Enter the Distance (D):";
+                cin >> distance;
+                cout << "Enter the Time (T):";
+                cin >> time;
+            if (time == 0 ){
+                cout << "Invalid Value";
+            } else{cout << "Velocity ="
+                    << physicsCalculator.calculateVelocity(distance, time)
+                    << "m/s\n";}
+
+                    break;
+
+            
+            case 2: 
+                cout << "Calculate Acceleration\n";
+                cout << "Enter the Velocity (V):";
+                cin >> velocity;
+                cout << "Enter The Initial Velocity (Vu):";
+                cin >> initialVelocity;
+                cout << "Enter the Time (T):";
+                cin >> time;
+
+                cout << "Acceleration = "
+                    << physicsCalculator.calculateAcceleration(velocity, time, initialVelocity)
+                    << "m/s²\n";
+
+                break;
 
             case 3:
                 cout << "Calculate Force\n";
