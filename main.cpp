@@ -185,9 +185,14 @@ int main() {
                 cout << "Enter the distance (m): ";
                 cin >> distance;
 
-                cout << "Energy = "
+                if ( distance <0 ){
+                    cout << "Error: Invalid input! Distance must be either positive or equal to zero.\n";
+                    break;
+                } else {
+                    cout << "Energy = "
                      << physicsCalculator.calculateWork(force, distance)
                      << " Joules\n";
+                }
                 break;
 
             case 8:
