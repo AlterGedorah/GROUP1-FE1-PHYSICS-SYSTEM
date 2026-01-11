@@ -2,21 +2,29 @@
 #include <limits>
 using namespace std;
 
-void showMenu() {
-    cout << "Physics System\n";
-    cout << "0 - Exit\n";
-    cout << "1 - Velocity\n";
-    cout << "2 - Acceleration\n";
-    cout << "3 - Force\n";
-    cout << "4 - Pressure\n";
-    cout << "5 - Density\n";
-    cout << "6 - Momentum\n";
-    cout << "7 - Energy/Work\n";
-    cout << "8 - Power\n";
-    cout << "9 - Kinetic Energy\n";
-    cout << "10 - Resistance\n";
-    cout << "Enter your choice: ";
-}
+class Menu {
+    public:
+    void showMenu() {
+        cout << "Physics System\n";
+        cout << "0 - Exit\n";
+        cout << "1 - Velocity\n";
+        cout << "2 - Acceleration\n";
+        cout << "3 - Force\n";
+        cout << "4 - Pressure\n";
+        cout << "5 - Density\n";
+        cout << "6 - Momentum\n";
+        cout << "7 - Energy/Work\n";
+        cout << "8 - Power\n";
+        cout << "9 - Kinetic Energy\n";
+        cout << "10 - Resistance\n";
+        cout << "Enter your choice: ";
+    }
+    void showContinue(){
+        cout << "Do you want to have another calculation?\n";
+        cout << "0 - Exit\n";
+        cout << "1 - Continue\n";
+    }
+};
 
 class PhysicsSystem {
 public:
@@ -61,12 +69,13 @@ public:
 
 int main() {
     PhysicsSystem physicsCalculator;
+    Menu menu;
     int choice;
 
-    double force, velocity, distance, mass, acceleration, area,initialVelocity,time,density, momentum, volume,voltage,electricCurrent;
+    double force, velocity, distance, mass, acceleration, area,initialVelocity,time, volume,voltage,electricCurrent;
 
     while (true) {
-        showMenu();
+        menu.showMenu();
 
         // Error Handling
         if (!(cin >> choice)) {
@@ -88,9 +97,11 @@ int main() {
                 cin >> distance;
                 cout << "Enter the Time (T):";
                 cin >> time;
-            if (time == 0 ){
-                cout << "Invalid Value";
-            } else{cout << "Velocity ="
+                if (time == 0) {
+                    cout << "Error: Time cannot be zero.\n";
+                    break;
+                } else{
+                    cout << "Velocity ="
                     << physicsCalculator.calculateVelocity(distance, time)
                     << "m/s\n";}
 
@@ -149,7 +160,7 @@ int main() {
                 cout << "Enter volume (V): ";
                 cin >> volume;
 
-                if (mass <= 0 && volume <= 0) { 
+                if (mass <= 0 || volume <= 0) { 
                      cout << "Error: Invalid input! Mass and volume must be postive or greater than zero.\n";
                     break;
                     }
@@ -235,7 +246,17 @@ int main() {
             default:
                 cout << "Invalid choice. Try again.\n";
         }
-
+        menu.showContinue();
+        cin >> choice;
+        
+        if (choice == 0) {
+            cout << "Exiting...\n";
+            break;  
+        } else if (choice == 1) {
+            continue; 
+        } else {
+            cout << "Invalid choice. Returning to menu.\n";
+        }
         cout << endl;
     }
 }
