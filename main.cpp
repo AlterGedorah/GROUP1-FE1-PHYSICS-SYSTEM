@@ -97,7 +97,7 @@ int main() {
                 cin >> distance;
                 cout << "Enter the Time (T):";
                 cin >> time;
-                if (time == 0) {
+                if (time <= 0) {
                     cout << "Error: Time cannot be zero.\n";
                     break;
                 } else{
@@ -130,7 +130,7 @@ int main() {
                 cout << "Enter acceleration (m/s^2): ";
                 cin >> acceleration;
 
-                cout << "Force =" 
+                cout << "Force = " 
                     << physicsCalculator.calculateForce(mass, acceleration)
                     << " Newtons\n";
                 break;
@@ -251,6 +251,7 @@ int main() {
             default:
                 cout << "Invalid choice. Try again.\n";
         }
+        cout << endl;
         menu.showContinue();
         cin >> choice;
         
