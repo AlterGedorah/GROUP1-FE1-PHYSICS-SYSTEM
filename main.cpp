@@ -97,7 +97,7 @@ int main() {
                 cin >> distance;
                 cout << "Enter the Time (T):";
                 cin >> time;
-                if (time == 0) {
+                if (time <= 0) {
                     cout << "Error: Time cannot be zero.\n";
                     break;
                 } else{
@@ -116,10 +116,14 @@ int main() {
                 cin >> initialVelocity;
                 cout << "Enter the Time (T):";
                 cin >> time;
+                if (time <= 0) {
+                    cout << "Error: Time cannot be zero.\n";
+                    break;
+                } else{
 
                 cout << "Acceleration = "
                     << physicsCalculator.calculateAcceleration(velocity, time, initialVelocity)
-                    << "m/s²\n";
+                    << "m/s²\n";}
 
                 break;
 
